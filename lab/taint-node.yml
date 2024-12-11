@@ -1,0 +1,20 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+   name: nodetaint
+spec:
+   replicas: 1
+   selector: 
+    matchLabels:
+     wezvatech: adam
+   template:
+     metadata:
+       name: taint
+       labels:
+         wezvatech: adam
+     spec:
+      containers:
+        - name: main
+          image: ubuntu
+          command: ["/bin/bash", "-c", "while true; do echo Adam-9739110917; sleep 10; done"]
+

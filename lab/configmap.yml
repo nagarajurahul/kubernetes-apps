@@ -1,0 +1,20 @@
+kind: Pod                         
+apiVersion: v1                  
+metadata:                         
+  name: configmap                  
+spec:                             
+  containers:                     
+    - name: main                                   
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo Adam-9739110917; sleep 10; done"]
+      volumeMounts:
+          - name: appconfig
+            mountPath: "/tmp/config"    
+  volumes:
+  - name: appconfig
+    configMap:
+       name: mymap   # this should match the config map name created in the first step
+       items:
+       - key: sample.conf # the name of the file used during creating the map
+         path: sample.conf
+

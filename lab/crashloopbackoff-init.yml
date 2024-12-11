@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: initpod
+spec:
+  initContainers:
+  - name: init
+    image: centos
+    command: ["/bin/bash", "-c", "exit 1"]
+  containers:   # main containers
+  - name: main
+    image: ubuntu
+    command: ["/bin/bash", "-c", "while true; do echo Adam-9739110917-main; sleep 10; done"]

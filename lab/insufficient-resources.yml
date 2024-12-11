@@ -1,0 +1,25 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+   name: insufficientresource
+spec:
+   replicas: 1
+   selector: 
+    matchLabels:
+     wezvatech: adam
+   template:
+     metadata:
+       name: inres
+       labels:
+         wezvatech: adam
+     spec:
+      containers:
+        - name: main
+          image: ubuntu
+          command: ["/bin/bash", "-c", "while true; do echo Adam-9739110917; sleep 10; done"]
+          resources:                        
+            requests:
+               memory: "4Gi"   
+            limits:
+               memory: "6Gi" 
+
