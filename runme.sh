@@ -21,10 +21,10 @@ while [ "$#" -gt 0 ]; do
        --option2 | -option2) message="Node Affinity"; manifest="node-affinity.yml"; OPTION2=true ;;
        --option3 | -option3) message="Unbound Persistent Volume"; manifest="unbound-pv.yml"; OPTION3=true ;;
        --option4 | -option4) message="Node Taint"; manifest="taint-node.yml"; OPTION4=true ;;
-       --option5 | -option5) message="Resource Quota"; manifest="resource-quota.yml"; OPTION5=true ;;
-       --option6 | -option6) message="ImagePullBackOff"; manifest="imagepullbackoff.yml"; OPTION6=true ;;
-       --option7 | -option7) message="Unavailable Configmap"; manifest="configmap.yml";  OPTION7=true ;;
-       --option8 | -option8) message="Unavailable Secret"; manifest="secret.yml"; OPTION8=true ;;
+       --option5 | -option5) message="Unavailable Configmap"; manifest="configmap.yml";  OPTION7=true ;;
+       --option6 | -option6) message="Unavailable Secret"; manifest="secret.yml"; OPTION8=true ;;
+       --option7 | -option7) message="Resource Quota"; manifest="resource-quota.yml"; OPTION5=true ;;
+       --option8 | -option8) message="ImagePullBackOff"; manifest="imagepullbackoff.yml"; OPTION6=true ;;
        --option9 | -option9) message="CrashLoopBackOff-OutofMemory"; manifest="crashloopbackoff-oom.yml"; OPTION9=true ;;
        --option10 | -option10) message="CrashLoopBackOff-Healthcheck"; manifest="crashloopbackoff-healthcheck.yml"; OPTION10=true ;;
        --option11 | -option11) message="CrashLoopBackOff-Init"; manifest="crashloopbackoff-init.yml"; OPTION11=true ;;
@@ -59,6 +59,12 @@ if [ "$manifest" = "unbound-pv.yml" ]; then
    kubectl patch storageclass standard -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
 fi
 
+IP=`kubectl get nodes |tail -1 |awk '{print $1}'`
+if [ "$manifest" = "taint-node.yml" ]; then
+   kubectl taint nodes $IP taint=true:NoSchedule
+   echo "Applied taint on the minikube server for the troubleshoot practise.."
+fi
+
 kubectl apply -f lab/$manifest
 if [ $? -eq 0 ]; then
     echo "\n - Applied the manifest for $message troubleshoot lab Successfully \n" 
@@ -84,6 +90,11 @@ if [ "$answer" = "y" ]; then
        echo "Removing Node Label !!"
        kubectl label node $IP mynode-
     fi
+
+    if [ "$manifest" = "taint-node.yml" ]; then
+       kubectl taint nodes $IP taint=true:NoSchedule-
+       echo "Removed taint on the minikube server .."
+   fi
 fi
 
 sleep 5; 
