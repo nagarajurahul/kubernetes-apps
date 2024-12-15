@@ -31,9 +31,14 @@ while [ "$#" -gt 0 ]; do
        --option12 | -option12) message="CrashLoopBackOff-Runtime"; manifest="crashloopbackoff-runtime.yml"; OPTION12=true ;;
        --option13 | -option13) message="Runtime Error-Service"; manifest="runtimeerr-svc.yml"; OPTION13=true ;;
        -h | --h ) 
-                   echo "$0 <option>            # pass any 1 option as below"
-                   echo "$0 -option1            # run option1"
-                   echo "Options:"
+	           clear
+	           echo "==================================================="
+		   echo "#         WEZVATECH - ADAM - 9739110917           #"
+	           echo "==================================================="
+                   echo "Syntax:  $0 <option>            # pass any 1 option as below"
+                   echo "Example: $0 -option1            # run option1"
+                   echo "         $0 -option2            # run option2"
+                   echo "\n Options:"
                    echo "  option1: Insufficient Resource "
                    echo "  option2: Node Affinity "
                    echo "  option3: Unbound Persistent Volume "
@@ -47,6 +52,7 @@ while [ "$#" -gt 0 ]; do
                    echo "  option11: CrashLoopBackOff-Init "
                    echo "  option12: CrashLoopBackOff-Runtime  "
                    echo "  option13: Runtime Error-Service "
+	           echo "==================================================="
                    exit 0 ;;
 	 * ) echo "Run the script with -h to get help"; exit 0;;
    esac
