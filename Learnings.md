@@ -1,6 +1,3 @@
-Docker pull fails saying max pull requests reached from IP
-
-
 ## Failure during scheduling
 
 
@@ -44,3 +41,44 @@ Uncomment and apply again the K8s manifest
 To solve problem like this
 
 Make sure to create these before applying K8s manifests for apps
+
+
+## Failure after Container Creation
+
+
+### Image Pull Back Off
+
+Docker pull fails saying max pull requests reached from IP
+
+Invalid Image
+
+Invalid credentials for private registry
+
+
+### Crash Loop Back Off
+
+
+`OOMKilled`
+
+Cant get insights from events nor logs
+
+Check `k get po`
+
+
+`Health-check Failure`
+
+Events and also check logs if anything is failing
+
+
+`Init-Containers Failing`
+
+Main container won't be started
+
+Check logs of init container
+
+
+`Runtime Error`
+
+Check logs of main container
+
+If full stack - any errors or error with DB connection
