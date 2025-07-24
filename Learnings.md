@@ -91,3 +91,7 @@ Also check if you have endpoints for your service
 
 If not, then may be service and pods are having correct labels
 
+
+## Replicas not coming up
+
+Check Resource Quota defined in your namespace
