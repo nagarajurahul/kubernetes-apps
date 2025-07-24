@@ -24,6 +24,8 @@ spec:
       labels:
         wezvatech: adam
     spec:
+      imagePullSecrets:
+        - name: docker-credentials
       containers:
       - name: main
         image: centos

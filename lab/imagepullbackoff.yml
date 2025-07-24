@@ -2,7 +2,9 @@ kind: Pod
 apiVersion: v1                  
 metadata:                         
   name: imagepull                  
-spec:                             
+spec:   
+  imagePullSecrets:
+        - name: docker-credentials                          
   containers:                     
     - name: main                                   
       image: adamtravis/wezvatechspringboot:release  
