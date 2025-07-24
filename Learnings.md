@@ -3,8 +3,7 @@
 
 `Insufficient Resource`
 
-Memory
-Can be CPU as well
+Memory, Can be CPU as well
 
 
 `Unbound Persistent Volume`
@@ -82,3 +81,13 @@ Check logs of init container
 Check logs of main container
 
 If full stack - any errors or error with DB connection
+
+
+## Not able to access Application
+
+Check pod and service
+
+Also check if you have endpoints for your service
+
+If not, then may be service and pods are having correct labels
+
