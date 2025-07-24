@@ -19,4 +19,8 @@ spec:
         - name: main
           image: ubuntu
           command: ["/bin/bash", "-c", "while true; do echo Adam-9739110917; sleep 10; done"]
-
+      # tolerations:
+      #   - key: "taint"
+      #     operator: "Equal"
+      #     value: "true"
+      #     effect: "NoSchedule"
